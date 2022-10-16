@@ -10,7 +10,18 @@ fun main(){
     println(calculatedDistance(51.5, 0.0, 38.8, -77.1))
 }
 
-//https://earth.nullschool.net/#current/wind/surface/level/orthographic=-329.68,46.36,2888/loc=35.520,46.713
+//https://earth.nullschool.net/#current/wind/isobaric/1000hPa/overlay=temp/orthographic=35.75,47.82,5113/loc=21.056,49.994
+
+//1000 hPa	 м, умови на рівні моря
+//850 hPa	 ~ 1,500 м, Планетарний прикордонний шар, низький
+//700 hPa	 ~ 3,500 м, Планетарний прикордонний шар, високий
+//500 hPa	 ~ 5,000 м, вири
+//250 hPa	~10 500 м, Реактивний потік
+//70 hPa	~17 500 м, Стратосфера
+//10 hPa	~26 500 м, більше стратосфери
+
+//overlay = temp - температура повітря.
+//overlay = Rh - відносна вологість повітря на заданій вистоі.
 
 private fun calculatedDistance(latOne: Double, lonOne: Double, latTwo: Double, lonTwo: Double) : Double{
     val earthRadiusKm = 6371;
