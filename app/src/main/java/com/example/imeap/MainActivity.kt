@@ -14,22 +14,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    //	public static double check(double posOneH, double posOneW,double posTwoH,double posTwoW){
-    //	    short earthRadiusKm = 6371;
-    //
-    //	    double dLat = (posOneH - posTwoH) * Math.PI / 180;
-    //	    double dLon = (posOneW - posTwoW) * Math.PI / 180;
-    //
-    //	    double a = posOneH * Math.PI / 180;
-    //	    double b = posTwoH * Math.PI / 180;
-    //
-    //	    double c = Math.sin(dLat/2)*Math.sin(dLat/2)
-    //	    + Math.sin(dLon/2)*Math.sin(dLon/2) * Math.cos(a) * Math.cos(b);
-    //
-    //	    return earthRadiusKm * (2 * Math.atan2(Math.sqrt(c), Math.sqrt(1-c)));
-    //	}
-    //}
-
     private fun calculatedDistance(startPoint: Point, endPoint: Point) : Double{
         val earthRadiusKm = 6371;
 
