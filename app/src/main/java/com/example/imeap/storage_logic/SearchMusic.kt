@@ -1,32 +1,60 @@
 package com.example.imeap.storage_logic
 
+
+import android.annotation.SuppressLint
 import android.content.Context
-import androidx.core.content.ContextCompat
+import android.database.Cursor
+import android.net.Uri
+import android.provider.MediaStore
+import android.util.Log
+
+import com.example.imeap.storage_logic.data_music.MusicInfo
+
 
 
 class SearchMusic(private val ctx: Context) {
 
-    fun getAllMusic() : HashMap<String, String>{
+    fun getAllMusic() : ArrayList<MusicInfo>{
 
         return try {
-            checkSdCard()
+            searchMusicCardStorage()
         }catch (ex: Exception){
-            emptyMap<String, String>() as HashMap<String, String>
+            ex.printStackTrace()
+            ArrayList<MusicInfo>()
         }
 
     }
 
 
-    private fun checkSdCard() : HashMap<String, String>{
+    @SuppressLint("Recycle")
+    private fun searchMusicCardStorage() : ArrayList<MusicInfo>{
+        val uri: Uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+        val projection = arrayOf(
+            MediaStore.Audio.AudioColumns.DATA,
+            MediaStore.Audio.AudioColumns.ALBUM,
+            MediaStore.Audio.ArtistColumns.ARTIST,
+            MediaStore.Audio.AudioColumns.DURATION
+            )
 
-    }
+        val music: Cursor? = ctx.contentResolver.query(uri, projection, null, null, null)
 
-    fun hasRealRemovableSdCard(): Boolean {
-        return ContextCompat.getExternalFilesDirs(ctx, null).size >= 2
-    }
+        val listMusic = ArrayList<MusicInfo>()
+        if(music != null){
 
-    private fun searchMusicCardStorage() : HashMap<String, String>{
+            while (music.moveToNext()){
+                listMusic.add(MusicInfo(
+                    path = music.getString(0),
+                    album = music.getString(1),
+                    artist = music.getString(2),
+                    name = music.getString(0).substring(music.getString(0).lastIndexOf("/") + 1),
+                    duration = (music.getString(3).toLong() * 0.001) *  0.0166 //похибка в 0.1 секунду.
+                ))
+            }
 
+            music.close()
+        }
+
+        return listMusic
     }
 
 }
