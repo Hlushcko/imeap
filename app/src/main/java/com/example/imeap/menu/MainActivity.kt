@@ -25,21 +25,8 @@ import javax.inject.Named
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var listMusic: MutableLiveData<ArrayList<MusicInfo>>
     private lateinit var viewModel: ModelMusic
     private lateinit var dagger: AppComponentDagger
-
-    @Inject @Named("name")
-    lateinit var listName: List<MusicInfo>
-    @Inject @Named("album")
-    lateinit var listAlbum: List<MusicInfo>
-    @Inject @Named("artist")
-    lateinit var listArtist: List<MusicInfo>
-    @Inject @Named("duration")
-    lateinit var listDuration: List<MusicInfo>
-    @Inject @Named("random")
-    lateinit var listRandom: List<MusicInfo>
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,32 +46,34 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init(){
-        listMusic = MutableLiveData<ArrayList<MusicInfo>>()
         viewModel = ViewModelProvider(this)[ModelMusic::class.java]
         checkPermission()
-        checkList()
         searchMusic()
     }
 
 
     private fun searchMusic(){
         lifecycleScope.launch(Dispatchers.IO){
-            val a = viewModel.getMusic(this@MainActivity)
-            if(a.isNotEmpty()) {
-                listMusic.postValue(a)
+            val list = viewModel.getMusic(this@MainActivity)
+            if(list.isNotEmpty()) {
+                initDagger(list)
             }
         }
     }
 
 
-    private fun checkList(){
-        listMusic.observe(this, Observer {
-            dagger = DaggerAppComponentDagger.builder()
-                .moduleSortMusic(ModuleSortMusic(it))
-                .build()
-        })
+    private fun initDagger(list: ArrayList<MusicInfo>){
+        dagger = DaggerAppComponentDagger.builder()
+            .moduleSortMusic(ModuleSortMusic(list))
+            .build()
     }
 
+
+    private fun getSortName(){
+        //setOnClick.....{
+    //         recyclerView.put(dagger.getName())
+    // }
+    }
 
 
 
