@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: ModelMusic
     private lateinit var dagger: AppComponentDagger
+    private val allMusic = ArrayList<MusicInfo>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO){
             val list = viewModel.getMusic(this@MainActivity)
             if(list.isNotEmpty()) {
+                allMusic.addAll(list)
                 initDagger(list)
             }
         }

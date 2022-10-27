@@ -6,5 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".menu.MainActivity">
 
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <androidx.appcompat.widget.ActionMenuView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="@string/all_sound"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="@string/name"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="@string/album"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="@string/artist"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="@string/duration"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="@string/random"
+                />
+
+
+        </androidx.appcompat.widget.ActionMenuView>
+
+    </HorizontalScrollView>
+
 
 </RelativeLayout>
