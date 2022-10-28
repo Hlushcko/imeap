@@ -4,61 +4,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".menu.MainActivity">
 
     <HorizontalScrollView
         android:id="@+id/scrollButton"
         android:layout_width="match_parent"
-        android:layout_height="55dp">
+        android:layout_height="60dp">
 
-        <androidx.appcompat.widget.ActionMenuView
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/all"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_button"
                 android:text="@string/all_sound"
                 />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/name"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_button"
                 android:text="@string/name"
                 />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/album"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_button"
                 android:text="@string/album"
                 />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/artist"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_button"
                 android:text="@string/artist"
                 />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/duration"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_button"
                 android:text="@string/duration"
                 />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/random"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_button"
                 android:text="@string/random"
                 />
 
+        </LinearLayout>
 
-        </androidx.appcompat.widget.ActionMenuView>
+
 
     </HorizontalScrollView>
 

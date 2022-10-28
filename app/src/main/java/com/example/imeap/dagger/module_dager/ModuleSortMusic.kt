@@ -14,7 +14,7 @@ class ModuleSortMusic(listMusic: ArrayList<MusicInfo>) {
 
     init {
         music = deleteMelody()
-        //music = deleteDuplicate()
+        music = deleteDuplicate()
     }
 
     @Provides @Named("name")
@@ -41,7 +41,6 @@ class ModuleSortMusic(listMusic: ArrayList<MusicInfo>) {
     @Provides @Named("random")
     fun getSortRandom() : List<MusicInfo>{
         val list = ArrayList<MusicInfo>(music.size)
-        //val twoMusic = music.clone()// i love ConcurrentModificationException
         val random: ArrayList<MusicInfo> = music.clone() as ArrayList<MusicInfo>
 
         music.forEach { _ ->
@@ -54,7 +53,6 @@ class ModuleSortMusic(listMusic: ArrayList<MusicInfo>) {
     }
 
 
-    //видалення мелодій вайбера, сmс повідомлень та інше...
     private fun deleteMelody() : ArrayList<MusicInfo>{
         val list = ArrayList<MusicInfo>()
 
@@ -68,13 +66,26 @@ class ModuleSortMusic(listMusic: ArrayList<MusicInfo>) {
     }
 
 
-    //видалення дублікатів по типу "name" and "name-1"
+    //коли користувач задає пісню як мелодію дзвінку або повідомлення андроїд
+    //створює дублікат цієї пісні (до 50 секунд) і додає "-" та ще кілька цифр
     private fun deleteDuplicate() : ArrayList<MusicInfo>{
         val list = ArrayList<MusicInfo>()
 
         for(element in music){
-            for(bite in list){
-                // todo "Доробити функцію для видалення дублікатів"
+            var notDuplicate: MusicInfo = MusicInfo("null", "null","null", "null", 0.0)
+
+            for(num in 0..9){
+                if(element.name.contains("-$num")){
+                    notDuplicate = MusicInfo("null", "null","null", "null", 0.0)
+                    break
+                }else{
+                    notDuplicate = element
+                }
+
+            }
+
+            if(notDuplicate.name != "null"){
+                list.add(notDuplicate)
             }
         }
 

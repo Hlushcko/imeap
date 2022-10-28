@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity(), OpenActivities {
             if(list.isNotEmpty()) {
                 allMusic.addAll(list)
                 initDagger(list)
+                recyclerList.list = dagger.getName()
             }
         }
     }
