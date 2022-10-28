@@ -1,7 +1,8 @@
-package com.example.imeap
+package com.example.imeap.menu
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.imeap.R
 
 class MusicView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

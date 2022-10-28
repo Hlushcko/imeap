@@ -10,15 +10,8 @@ import kotlinx.coroutines.launch
 
 class ModelMusic : ViewModel() {
 
-    fun a(){
-
-        viewModelScope.launch(Dispatchers.IO){
-
-        }
-
-    }
-
     fun getMusic(context: Context) : ArrayList<MusicInfo>{
         return SearchMusic(context).getAllMusic()
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.imeap.dagger.module_dager
 
+import android.util.Log
 import com.example.imeap.storage_logic.data_music.MusicInfo
 import dagger.Module
 import dagger.Provides
@@ -7,13 +8,13 @@ import javax.inject.Inject
 import javax.inject.Named
 
 @Module
-class ModuleSortMusic @Inject constructor(listMusic: ArrayList<MusicInfo>) {
+class ModuleSortMusic(listMusic: ArrayList<MusicInfo>) {
 
     private var music = listMusic
 
     init {
         music = deleteMelody()
-        music = deleteDuplicate()
+        //music = deleteDuplicate()
     }
 
     @Provides @Named("name")
@@ -21,8 +22,7 @@ class ModuleSortMusic @Inject constructor(listMusic: ArrayList<MusicInfo>) {
         return music.sortedBy { it.name }
     }
 
-    @Provides
-    @Named("album")
+    @Provides @Named("album")
     fun getSortAlbum() : List<MusicInfo>{
         return music.sortedBy { it.album }
     }
@@ -40,11 +40,12 @@ class ModuleSortMusic @Inject constructor(listMusic: ArrayList<MusicInfo>) {
 
     @Provides @Named("random")
     fun getSortRandom() : List<MusicInfo>{
-        val list = ArrayList<MusicInfo>(music.size-1)
-        val random = music
+        val list = ArrayList<MusicInfo>(music.size)
+        //val twoMusic = music.clone()// i love ConcurrentModificationException
+        val random: ArrayList<MusicInfo> = music.clone() as ArrayList<MusicInfo>
 
-        for(element in music){
-            val num = (0 until music.size).random()
+        music.forEach { _ ->
+            val num = (0 until random.size).random()
             list.add(random[num])
             random.removeAt(num)
         }
@@ -58,7 +59,7 @@ class ModuleSortMusic @Inject constructor(listMusic: ArrayList<MusicInfo>) {
         val list = ArrayList<MusicInfo>()
 
         for(element in music){
-            if(element.duration > 10){ // записує тільки аудіо які грають довше 10 секунд
+            if(element.duration > 0.10f){ // записує тільки аудіо які грають довше 10 секунд
                 list.add(element)
             }
         }
