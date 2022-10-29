@@ -5,12 +5,9 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcelable
-import android.util.Log
+
 import android.widget.Button
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,17 +24,19 @@ import com.example.imeap.storage_logic.data_music.MusicInfo
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
-import javax.inject.Named
+
 
 
 class MainActivity : AppCompatActivity(), OpenActivities {
+
+    private val KEY_LIST_MUSIC = "ListSong"
 
     private lateinit var viewModel: ModelMusic
     private lateinit var dagger: AppComponentDagger
     private lateinit var recycler: RecyclerView
     private lateinit var recyclerList: RecyclerMusicList
 
+    private var correctList = ArrayList<MusicInfo>()
     private val allMusic = ArrayList<MusicInfo>()
 
 
@@ -81,7 +80,11 @@ class MainActivity : AppCompatActivity(), OpenActivities {
             if(list.isNotEmpty()) {
                 allMusic.addAll(list)
                 initDagger(list)
-                recyclerList.list = dagger.getName()
+
+                val a = dagger.getName()
+
+                correctList.addAll(a)
+                recyclerList.list = correctList
             }
         }
     }
@@ -96,43 +99,55 @@ class MainActivity : AppCompatActivity(), OpenActivities {
 
     private fun getAllMusic(){
         findViewById<Button>(R.id.all).setOnClickListener{
+            correctList.clear()
+            correctList = allMusic
             recyclerList.list = allMusic
         }
     }
 
     private fun getSortName(){
         findViewById<Button>(R.id.name).setOnClickListener{
-            recyclerList.list = dagger.getName()
+            correctList.clear()
+            correctList.addAll(dagger.getName())
+            recyclerList.list = correctList
         }
     }
 
     private fun getSortAlbum(){
         findViewById<Button>(R.id.album).setOnClickListener{
-            recyclerList.list = dagger.getAlbum()
+            correctList.clear()
+            correctList.addAll(dagger.getAlbum())
+            recyclerList.list = correctList
         }
     }
 
     private fun getSortArtist(){
         findViewById<Button>(R.id.artist).setOnClickListener{
-            recyclerList.list = dagger.getArtist()
+            correctList.clear()
+            correctList.addAll(dagger.getArtist())
+            recyclerList.list = correctList
         }
     }
 
     private fun getSortDuration(){
         findViewById<Button>(R.id.duration).setOnClickListener{
-            recyclerList.list = dagger.getDuration()
+            correctList.clear()
+            correctList.addAll(dagger.getDuration())
+            recyclerList.list = correctList
         }
     }
 
     private fun getSortRandom(){
         findViewById<Button>(R.id.random).setOnClickListener{
-            recyclerList.list = dagger.getRandom()
+            correctList.clear()
+            correctList.addAll(dagger.getRandom())
+            recyclerList.list = correctList
         }
     }
 
     override fun openActivity() {
         val intent = Intent(this, MusicView::class.java)
-        intent.putParcelableArrayListExtra("ListSong", recyclerList.list as java.util.ArrayList<out Parcelable>)
+        intent.putParcelableArrayListExtra(KEY_LIST_MUSIC, correctList)
         startActivity(intent)
     }
 
