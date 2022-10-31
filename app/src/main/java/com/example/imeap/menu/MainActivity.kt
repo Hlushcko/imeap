@@ -74,6 +74,7 @@ class MainActivity : AppCompatActivity(), OpenActivities {
         viewModel = ViewModelProvider(this)[ModelMusic::class.java]
         recycler = findViewById(R.id.listMusic)
         recyclerList = RecyclerMusicList(this)
+        recycler.setHasFixedSize(true)
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = recyclerList
 
