@@ -9,5 +9,7 @@
 
 Фото:
 
+<p>
 <img src="https://user-images.githubusercontent.com/72913351/199062540-a3c63f8b-ba89-4348-8bf1-2e1d8a6758fc.jpeg" width="200">
 <img src="https://user-images.githubusercontent.com/72913351/199062547-5768653b-fd3d-4900-b37c-5f7cf26528e4.jpeg" width="200">
+</p>
