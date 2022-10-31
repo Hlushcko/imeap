@@ -27,7 +27,7 @@ class RecyclerMusicList(
 
     override fun onBindViewHolder(holder: MusicHolder, position: Int) {
         holder.name.text = list[position].name
-        holder.openMusic(open)
+        holder.openMusic(open, position)
     }
 
     override fun getItemCount() = list.size
@@ -36,9 +36,9 @@ class RecyclerMusicList(
     class MusicHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.soundName)
 
-        fun openMusic(open: OpenActivities){
+        fun openMusic(open: OpenActivities, position: Int){
             name.setOnClickListener {
-                open.openActivity()
+                open.openActivity(position)
             }
         }
 

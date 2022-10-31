@@ -2,5 +2,5 @@ package com.example.imeap.recycler
 
 interface OpenActivities {
 
-    fun openActivity()
+    fun openActivity(position: Int)
 }

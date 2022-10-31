@@ -8,6 +8,7 @@ import javax.inject.Named
 @Component (modules = [ModuleSortMusic::class])
 interface AppComponentDagger {
 
+    //1 module
     @Named("name")
     fun getName() : List<MusicInfo>
 
